@@ -9,7 +9,8 @@ class Article < ActiveRecord::Base
   end
 
   def tag_list=(tags_string)
-    tag_names = tags_string.split(",").map(&:strip)
+    self.taggings.destroy_all
+    tag_names = tags_string.split(",").map(&:strip).map(&:downcase).uniq
     tag_names.each do |tag_name|
       tag = Tag.find_or_create_by_name(tag_name)
       tagging = self.taggings.new

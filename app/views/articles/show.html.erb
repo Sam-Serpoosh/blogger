@@ -1,5 +1,6 @@
 <h1><%= @article.title %></h1>
-<p><%= @article.body %></p> 
+<p>Tags: <%= tag_links(@article.tags) %></p><br />
+<p><%= @article.body %></p><br />
 <%= link_to "delete", article_path(@article), method: :delete, confirm: "Really delete the article?" %>
 <%= link_to "edit", edit_article_path(@article) %><br /><br />
 
