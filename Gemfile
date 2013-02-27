@@ -25,6 +25,7 @@ group :test do
   gem 'webrat', '0.7.2'
 end
 
+gem 'paperclip'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
