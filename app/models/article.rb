@@ -1,9 +1,9 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list, :image
+  attr_accessible :title, :body, :tag_list, :attachment
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
-  has_attached_file :image
+  has_many :attachments
 
   def tag_list
     self.tags.join(", ")
@@ -17,5 +17,13 @@ class Article < ActiveRecord::Base
       tagging = self.taggings.new
       tagging.tag_id = tag.id
     end
+  end
+
+  def images
+    self.attachments.map(&:image)
+  end
+
+  def attachment=(file)
+    self.attachments.build(image: file)
   end
 end

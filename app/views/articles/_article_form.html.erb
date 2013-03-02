@@ -18,13 +18,15 @@
     <%= f.text_field :tag_list %>
   </p>
   <p>
-    <% if @article.image.exists? %>
-      <%= image_tag @article.image.url %><br />
-      <%= f.label :image, "Attach a New Image" %>
+    <% if !@article.images.empty? %>
+      <% @article.images.each do |image| %>
+        <%= image_tag image.url %>
+      <% end %>
+      <%= f.label :attachment, "Attach a New Image" %>
     <% else %>
-      <%= f.label :image, "Attach an image" %><br />
+      <%= f.label :attachment, "Attach an image" %><br />
     <% end %>
-    <%= f.file_field :image %>
+    <%= f.file_field :attachment %>
   </p>
   <p>
     <%= f.submit %>
