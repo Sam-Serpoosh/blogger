@@ -6,4 +6,6 @@
 	<% end %>
 </ul>
 
-<%= link_to "Create a new Article", new_article_path, class: "new_article" %>
+<% if logged_in? %>
+  <%= link_to "Create a new Article", new_article_path, class: "new_article" %>
+<% end %>
