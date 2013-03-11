@@ -1,3 +1,5 @@
+require_relative "../services/tag_processor"
+
 class Article < ActiveRecord::Base
   attr_accessible :title, :body, :tag_list, :attachment
   has_many :comments
@@ -14,7 +16,7 @@ class Article < ActiveRecord::Base
 
   def tag_list=(tags_string)
     self.taggings.destroy_all
-    tag_names = tags_string.split(",").map(&:strip).map(&:downcase).uniq
+    tag_names = TagProcessor.tags(tags_string)
     tag_names.each do |tag_name|
       tag = Tag.find_or_create_by_name(tag_name)
       tagging = self.taggings.new
