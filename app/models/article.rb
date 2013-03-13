@@ -16,7 +16,7 @@ class Article < ActiveRecord::Base
 
   def tag_list=(tags_string)
     self.taggings.destroy_all
-    tag_names = TagProcessor.tags(tags_string)
+    tag_names = TagProcessor.tags_from(tags_string)
     tag_names.each do |tag_name|
       tag = Tag.find_or_create_by_name(tag_name)
       tagging = self.taggings.new
