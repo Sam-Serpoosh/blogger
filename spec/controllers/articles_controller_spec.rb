@@ -90,5 +90,16 @@ describe ArticlesController do
         flash.notice.should be_nil
       end
     end
+
+    context "#deleting" do
+      it "deletes the article" do
+        article = stub(title: "foo")
+        article.should_receive(:destroy)
+        Article.stub(:find) { article }
+        delete :destroy, id: 1
+
+        flash.notice.should == "Article foo Deleted!"
+      end
+    end
   end
 end
