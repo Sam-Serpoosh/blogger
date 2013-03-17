@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative "../../app/services/articles_month_navigator"
 
 describe Article do
   let(:article) {

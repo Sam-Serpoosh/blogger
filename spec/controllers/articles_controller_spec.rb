@@ -2,12 +2,32 @@ require 'spec_helper'
 
 describe ArticlesController do 
   describe "listing" do
-    it "fetches the list of all articles" do
-      articles = [stub, stub]
-      Article.stub(all: articles)
-      get :index
-      assigns(:articles).should == articles
+    context "#all_articles" do
+      it "fetches the list of all articles" do
+        articles = [stub, stub]
+        Article.stub(all: articles)
+        get :index
+        assigns(:articles).should == articles
+      end
     end
+    
+#    context "#published_in_month" do
+#      before do
+#        a = Article.new(title: "foo", body: "bar")
+#        a.created_at = Date.parse("2013-02-20")
+#        a.save!
+#
+#        a = Article.new(title: "bar", body: "baz")
+#        a.created_at = Date.parse("2013-03-1")
+#        a.save!
+#      end
+#
+#      it "fetches articles in a given month" do
+#        post :published_in, month: "february"
+#        assigns(:articles).count.should == 1
+#        assigns(:articles).first.title.should == "foo"
+#      end
+#    end
   end
 
   describe "showing" do

@@ -1,0 +1,11 @@
+<% @selected_month ||= "nothing" %>
+<%= form_tag("/articles_in", method: :post) do %>
+  <p>
+  <%= select_tag(:month, options_for_select([["--select--", "nothing"],
+          ["Jan", "january"], 
+          ["Feb", "february"], 
+          ["Mar", "march"]], @selected_month), class: "search-month")
+    %>
+    <%= submit_tag "Search" %>
+  </p>
+<% end %>

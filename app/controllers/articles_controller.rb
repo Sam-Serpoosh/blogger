@@ -5,6 +5,12 @@ class ArticlesController < ApplicationController
 		@articles = Article.all
 	end
 
+  def published_in
+    @selected_month = params[:month]
+    @articles = ArticlesMonthNavigator.articles_in @selected_month
+    render action: "index"
+  end
+
   def show
     @article = Article.find(params[:id])
     @comment = Comment.new

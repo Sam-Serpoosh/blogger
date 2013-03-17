@@ -1,9 +1,23 @@
+require 'date'
+require_relative "./month_name_to_number"
+
 class ArticlesMonthNavigator
   def self.articles_in month
-    Article.all.select do |article|
-      published_month = article.created_at.to_date.month
-      month_number = MonthNameToNumber.month_number_of(month)
-      published_month == month_number
-    end
+    month_period = period_of month
+    Article.where("created_at >= ? AND created_at < ?", 
+                  month_period.begins_at, month_period.ends_at)
   end
+
+  def self.period_of month
+    month_number = MonthNameToNumber.month_number_of(month)
+    this_year = Date.today.year.to_s
+    period = Period.new
+    period.begins_at = Date.parse("#{this_year}-#{month_number}-01")
+    period.ends_at = Date.parse("#{this_year}-#{month_number + 1}-01")
+    period
+  end
+end
+
+class Period
+  attr_accessor :begins_at, :ends_at
 end
