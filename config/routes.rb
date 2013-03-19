@@ -8,13 +8,8 @@ Blogger::Application.routes.draw do
   match "login" => "author_sessions#new"
   match "logout" => "author_sessions#destroy"
 
-#  get '/articles_in/:month',
-#    to: "articles#published_in",
-#    as: "month_articles"
-
   post '/articles_in',
-    to: "articles#published_in",
-    as: "month_articles"
+    to: "articles#published_in"
 
   root to: "articles#index"
   # The priority is based upon order of creation:

@@ -23,7 +23,7 @@ describe ArticlesMonthNavigator do
     articles.first.title.should == "foo"
   end
 
-  it "sets the period for selected month" do
+  it "creates the period for selected month" do
     period = ArticlesMonthNavigator.period_of("february")
     period.begins_at.should == Date.parse("2013-02-01")
     period.ends_at.should == Date.parse("2013-03-01")
