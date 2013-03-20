@@ -46,3 +46,32 @@ a.popular_articles {
   color:#999999;
   text-decoration:none
 }
+
+/* Navigation */
+
+.navigation {
+  float: right;
+  background: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+.navigation ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+.navigation ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.navigation ul li a:hover {
+  text-decoration: underline;
+}
