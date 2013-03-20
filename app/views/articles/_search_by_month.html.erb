@@ -4,7 +4,16 @@
   <%= select_tag(:month, options_for_select([["--select--", "nothing"],
           ["Jan", "january"], 
           ["Feb", "february"], 
-          ["Mar", "march"]], @selected_month), class: "search-month")
+          ["Mar", "march"],
+          ["Apr", "april"],
+          ["May", "may"],
+          ["Jun", "june"],
+          ["Jul", "july"],
+          ["Aug", "auguest"],
+          ["Sep", "september"],
+          ["Oct", "october"],
+          ["Nov", "november"],
+          ["Dec", "december"]], @selected_month), class: "search-month")
     %>
     <%= submit_tag "Search" %>
   </p>

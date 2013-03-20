@@ -1,4 +1,5 @@
 require 'date'
+require 'active_support/core_ext/object'
 require_relative "./month_name_to_number"
 
 class ArticlesMonthNavigator
@@ -13,7 +14,7 @@ class ArticlesMonthNavigator
     this_year = Date.today.year.to_s
     period = Period.new
     period.begins_at = Date.parse("#{this_year}-#{month_number}-01")
-    period.ends_at = Date.parse("#{this_year}-#{month_number + 1}-01")
+    period.ends_at = period.begins_at + 1.month
     period
   end
 end
