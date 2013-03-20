@@ -1,5 +1,7 @@
 <h1><%= @article.title %></h1>
-<p>Tags: <%= tag_links(@article.tags) %></p><br />
+<p>Tags: <%= tag_links(@article.tags) %></p>
+<%= ViewedText.for(@article.viewed_count) %>
+<br />
 <% if !@article.images.empty? %>
   <% @article.images.each do |image| %>
     <%= image_tag image.url %>

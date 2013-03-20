@@ -32,7 +32,7 @@ describe ArticlesController do
 
   describe "showing" do
     it "fetches the article by id and associate the comment with it" do
-      article = stub(id: 1)
+      article = stub(id: 1).as_null_object
       Article.stub(:find).with("1") { article }
       comment = stub
       comment.should_receive(:article_id=).with(1)
@@ -41,6 +41,14 @@ describe ArticlesController do
       get :show, id: 1
 
       assigns(:article).should == article
+    end
+
+    it "notifies the article when it's viewed" do
+      article = stub.as_null_object
+      article.should_receive(:viewed)
+      Article.stub(:find) { article }
+
+      get :show, id: 1
     end
   end
 

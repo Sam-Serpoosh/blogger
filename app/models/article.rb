@@ -31,4 +31,9 @@ class Article < ActiveRecord::Base
   def attachment=(file)
     self.attachments.build(image: file)
   end
+
+  def viewed
+    self.viewed_count += 1
+    save!
+  end
 end

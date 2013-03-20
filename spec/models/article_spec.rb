@@ -42,6 +42,20 @@ describe Article do
       article.images.should == ["1.png", "2.png"]
     end
   end
+
+  context "#viewed_count" do
+    it "sets the viewed_count to 0 by default" do
+      article.save!
+      article.viewed_count.should == 0
+    end
+
+    it "increments the viewed count" do
+      article.save!
+      article.viewed
+      from_db = Article.find(article.id)
+      from_db.viewed_count.should == 1
+    end
+  end
 end
 
 class MyTag
