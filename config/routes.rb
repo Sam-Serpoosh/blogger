@@ -8,6 +8,8 @@ Blogger::Application.routes.draw do
   match "login" => "author_sessions#new"
   match "logout" => "author_sessions#destroy"
 
+  match "popular_articles" => "articles#populars"
+
   post '/articles_in',
     to: "articles#published_in"
 

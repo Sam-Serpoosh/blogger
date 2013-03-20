@@ -1,9 +1,16 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, except: [:index, :show]
+  before_filter :require_login, except: [:index, :show, 
+                                         :populars, :published_in
+                                        ]
 
 	def index
 		@articles = Article.all
 	end
+
+  def populars
+    @articles = Article.popular_articles
+    render action: "index"
+  end
 
   def published_in
     @selected_month = params[:month]

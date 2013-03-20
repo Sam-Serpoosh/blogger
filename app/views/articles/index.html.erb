@@ -9,6 +9,7 @@
 	<% end %>
 </ul>
 
+<%= link_to "Popular Articles", popular_articles_path, class: "popular_articles" %>
 <% if logged_in? %>
   <%= link_to "Create a new Article", new_article_path, class: "new_article" %>
 <% end %>

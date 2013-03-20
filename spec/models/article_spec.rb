@@ -56,6 +56,25 @@ describe Article do
       from_db.viewed_count.should == 1
     end
   end
+
+  context "popular articles" do
+    it "fetches 3 most popular articles" do
+      articles = []
+      4.times do
+        articles << Article.create!(title: "foo", body: "bar")
+      end
+      view_many_times(articles[0], 10)
+      view_many_times(articles[1], 8)
+      view_many_times(articles[3], 5)
+
+      popular = Article.popular_articles
+      popular.should == [articles[0], articles[1], articles[3]]
+    end
+
+    def view_many_times(an_article, number)
+      number.times { an_article.viewed }
+    end
+  end
 end
 
 class MyTag

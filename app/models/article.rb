@@ -36,4 +36,10 @@ class Article < ActiveRecord::Base
     self.viewed_count += 1
     save!
   end
+
+  class << self
+    def popular_articles
+      order("viewed_count desc").limit(3)
+    end
+  end
 end
