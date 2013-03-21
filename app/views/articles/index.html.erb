@@ -3,13 +3,15 @@
 
 <h1>All Articles</h1>
 
+<%= link_to "Popular Articles", popular_articles_path, class: "popular_articles" %>
+<% if logged_in? %>
+  <%= link_to "Create a new Article", new_article_path, class: "new_article" %>
+<% end %>
+
 <ul id="articles">
 	<% @articles.each do |article| %>
     <li><%= link_to article.title, article_path(article), class: "article_title" %></li>
 	<% end %>
 </ul>
 
-<%= link_to "Popular Articles", popular_articles_path, class: "popular_articles" %>
-<% if logged_in? %>
-  <%= link_to "Create a new Article", new_article_path, class: "new_article" %>
-<% end %>
+<br />

@@ -1,9 +1,12 @@
 Blogger::Application.routes.draw do
-	resources :articles
   resources :comments
   resources :tags
   resources :authors
   resources :author_sessions, only: [:new, :create, :destroy]
+	resources :articles
+  match "/feed" => "articles#feed",
+    as: :feed,
+    defaults: { format: "atom" }
 
   match "login" => "author_sessions#new"
   match "logout" => "author_sessions#destroy"

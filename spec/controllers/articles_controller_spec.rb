@@ -40,6 +40,35 @@ describe ArticlesController do
     end
   end
 
+  describe "feed" do
+    it "sets the feed title" do
+      get :feed
+      assigns(:feed_title).should == "Articles Feed"
+    end
+
+    it "fetches articles in reverse chronological order" do
+      articles = []
+      2.times do |n|
+        article = Article.new(title: "foo", body: "bar")
+        article.updated_at = Date.parse("2013-03-#{n + 1}")
+        article.save!
+        articles << article
+      end
+      get :feed
+
+      assigns(:articles).should == articles.reverse
+    end
+
+    it "sets the feed updated time based on latest edit" do
+      updated = Date.parse("2013-03-01")
+      articles = [stub(updated_at: updated)]
+      Article.stub(:order) { articles }
+
+      get :feed
+      assigns(:feed_updated).should == updated
+    end
+  end
+
   describe "showing" do
     it "fetches the article by id and associate the comment with it" do
       article = stub(id: 1).as_null_object

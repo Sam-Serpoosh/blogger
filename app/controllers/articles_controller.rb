@@ -1,7 +1,21 @@
 class ArticlesController < ApplicationController
   before_filter :require_login, except: [:index, :show, 
-                                         :populars, :published_in
+                                         :populars, :published_in, 
+                                         :feed
                                         ]
+  
+                                        
+  def feed
+    @feed_title = "Articles Feed"
+    @articles = Article.order("updated_at desc")
+    @feed_updated = @articles.first.updated_at unless @articles.empty?
+
+    respond_to do |format|
+      format.atom {
+        render :content_type => 'application/atom+xml'
+      }
+    end
+  end
 
 	def index
 		@articles = Article.all
